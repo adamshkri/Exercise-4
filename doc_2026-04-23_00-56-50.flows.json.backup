@@ -1,0 +1,245 @@
+[
+    {
+        "id": "a8643bb3c25095cf",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7c68f20d955b58ad",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d54445254cf4c53b",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "17a6c60aa3b49f38",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "host.docker.internal",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f9b9442afa165070",
+        "type": "http in",
+        "z": "a8643bb3c25095cf",
+        "name": "",
+        "url": "/api/sensor/:id",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 240,
+        "wires": [
+            [
+                "288e12816033fb90",
+                "eb123746c881f231"
+            ]
+        ]
+    },
+    {
+        "id": "288e12816033fb90",
+        "type": "debug",
+        "z": "a8643bb3c25095cf",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "eb123746c881f231",
+        "type": "http response",
+        "z": "a8643bb3c25095cf",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 600,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "ac3eb7c406cb3d56",
+        "type": "http in",
+        "z": "a8643bb3c25095cf",
+        "name": "",
+        "url": "/api/telemetry",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 420,
+        "wires": [
+            [
+                "74b60bfce6f8f14e",
+                "e6ca569f29cef9e4"
+            ]
+        ]
+    },
+    {
+        "id": "74b60bfce6f8f14e",
+        "type": "debug",
+        "z": "a8643bb3c25095cf",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "e6ca569f29cef9e4",
+        "type": "http response",
+        "z": "a8643bb3c25095cf",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 560,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "e69b98792b7ec86c",
+        "type": "http in",
+        "z": "7c68f20d955b58ad",
+        "name": "",
+        "url": "/api/secure-data",
+        "method": "post",
+        "upload": true,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "5b137b9c61c36cf0",
+                "78b6a292aac71dd6"
+            ]
+        ]
+    },
+    {
+        "id": "5b137b9c61c36cf0",
+        "type": "debug",
+        "z": "7c68f20d955b58ad",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "78b6a292aac71dd6",
+        "type": "http response",
+        "z": "7c68f20d955b58ad",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d9e3689e19bfd280",
+        "type": "inject",
+        "z": "d54445254cf4c53b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"temperature\":25.5, \"sensor\": \"ESP32_01\"}",
+        "payloadType": "json",
+        "x": 390,
+        "y": 220,
+        "wires": [
+            [
+                "2d4ec50588aabca8"
+            ]
+        ]
+    },
+    {
+        "id": "2d4ec50588aabca8",
+        "type": "mqtt out",
+        "z": "d54445254cf4c53b",
+        "name": "",
+        "topic": "campus/lab1/temperature",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "17a6c60aa3b49f38",
+        "x": 610,
+        "y": 140,
+        "wires": []
+    }
+]
